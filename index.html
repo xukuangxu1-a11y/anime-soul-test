@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>你的动漫灵魂角色是？· 36题深度人格测试</title><meta name="description" content="36道题，8个灵魂维度，48位动漫角色，测出你的本命灵魂角色">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#0d0b1e;color:#eee;min-height:100vh;background-image:radial-gradient(circle at 20% 10%,#3b1d6e 0,transparent 40%),radial-gradient(circle at 80% 90%,#12406b 0,transparent 45%)}
+.w{max-width:480px;margin:0 auto;padding:20px 16px 60px}.c{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:20px;margin:14px 0;backdrop-filter:blur(8px)}
+h1{font-size:28px;text-align:center;background:linear-gradient(90deg,#ff8ad8,#8ab4ff);-webkit-background-clip:text;color:transparent;margin:30px 0 8px}h2{font-size:18px;margin-bottom:10px}
+.sub{text-align:center;color:#aab;font-size:14px;line-height:1.7}.btn{display:block;width:100%;padding:15px;border:0;border-radius:30px;font-size:17px;font-weight:600;color:#fff;background:linear-gradient(90deg,#e14bb0,#6a5cff);margin:12px 0;cursor:pointer}
+.btn.g{background:rgba(255,255,255,.12)}.btn.s{padding:10px;font-size:14px}.hide{display:none!important}
+.bar{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#ff8ad8,#8ab4ff);transition:.3s}
+.q{font-size:19px;line-height:1.6;margin:18px 0}.op{display:block;width:100%;text-align:left;padding:14px 16px;margin:10px 0;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:#eee;font-size:15px;line-height:1.5;cursor:pointer}.op:active,.op.on{background:rgba(225,75,176,.3);border-color:#e14bb0}
+.av{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:700;color:#fff;margin:0 auto;box-shadow:0 0 30px rgba(255,138,216,.4)}.av.sm{width:46px;height:46px;font-size:20px;margin:0;box-shadow:none}
+.tag{display:inline-block;padding:4px 10px;border-radius:12px;background:rgba(138,180,255,.18);color:#bcd;font-size:12px;margin:3px}.pct{font-size:44px;font-weight:800;text-align:center;color:#ff8ad8}
+.row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}.row:last-child{border:0}.row b{display:block}.row small{color:#99a}
+.lock{position:relative}.lock .bl{filter:blur(6px);user-select:none;pointer-events:none}.lock .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(13,11,30,.5);border-radius:18px}
+.mask{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:9;flex-direction:column;padding:20px}.mask img{max-width:90%;max-height:75vh;border-radius:12px}
+.ad{width:300px;height:250px;border:2px dashed #666;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#888;font-size:14px;flex-direction:column}
+p.t{line-height:1.8;font-size:15px;color:#ddd}.kw{font-size:15px;color:#ffd27a;text-align:center;margin:8px 0}.it{margin:10px 0}.it b{color:#ff8ad8}
+</style></head><body><div class="w" id="app"></div>
+<script>
+const DIM=["外向","理性","掌控","温柔","自由","阴影","浪漫","坚韧"];
+const DK=["E","T","L","K","F","D","R","S"];
+// name|work|tags|quote|intro|cp|identity|vector(8 digits 1-9)
+const RAW=`漩涡鸣人|火影忍者|热血,不服输,治愈系|我是不会放弃的，这就是我的忍道！|从被全村孤立的吊车尾一路成长为火影。你骨子里有种笨拙但执拗的光，越被看低越要证明自己。|日向雏田|木叶忍者 · 第七代火影|94368389
+宇智波佐助|火影忍者|孤傲,执念,外冷内热|我的眼中只有复仇。|背负家族血仇独自前行，用冷漠包裹创伤。你习惯一个人扛，但其实一直在等被理解。|春野樱|宇智波末裔 · 叛忍|28724768
+宇智波鼬|火影忍者|隐忍,牺牲,温柔的谎言|原谅我，佐助，这是最后一次了。|为了村子与弟弟背负全部骂名。你是那种把爱藏在沉默里、宁可被误解也不解释的人。|（无，守护即是爱）|晓组织 · 暗部|39582859
+旗木卡卡西|火影忍者|慵懒,可靠,温柔导师|在忍者的世界里，违反规则的人是废物，但不珍惜同伴的人连废物都不如。|看似散漫爱迟到，实则把伤痛和责任都扛在肩上。你是朋友圈里那个最靠谱的"佛系大人"。|（暧昧不明）|木叶上忍 · 第六代火影|47575568
+蒙奇·D·路飞|海贼王|自由,直觉,天生领袖|我是要成为海贼王的男人！|单纯、贪吃、冲动，却能让所有人愿意追随。你相信直觉胜过计划，自由就是你的全部。|（只有冒险）|草帽海贼团船长|92529339
+罗罗诺亚·索隆|海贼王|路痴,忠诚,武士道|如果连自己的船长都保护不了，还谈什么野心！|嘴硬寡言，却是最忠诚的伙伴。你认定一件事就会用一生去守护，哪怕满身伤痕。|（与路痴为伴）|草帽一伙 · 剑士|36454459
+娜美|海贼王|精明,爱钱,刀子嘴|路飞，救救我……|看似贪财精明，其实背负过最沉重的过去。你懂得保护自己，也会在信任的人面前卸下防备。|（伙伴们）|草帽一伙 · 航海士|78445356
+山治|海贼王|骑士精神,浪漫,厨师|我不会对女人动手，就算死也不会。|对女性无限温柔，对饥饿绝不容忍。你是天生的照顾者，浪漫到骨子里。|（全世界的女士）|草帽一伙 · 厨师|76475396
+妮可·罗宾|海贼王|知性,神秘,渴望被爱|我想活下去！带我去大海吧！|曾被世界抛弃的学者，用微笑掩盖孤独。你冷静聪明，但内心深处一直在寻找归属感。|（伙伴们）|考古学家|38663667
+利威尔|进击的巨人|洁癖,冷面,人类最强|选择吧，不会后悔的那一个。|毒舌、洁癖、冷着脸，却比谁都珍惜部下。你习惯用行动代替表达，责任感强到可怕。|韩吉（粉丝向）|调查兵团兵长|37844479
+艾伦·耶格尔|进击的巨人|执念,自由,矛盾|我要把它们一个不剩地驱逐出去！|对自由的渴望最终走向极端。你内心有一团火，强烈到连自己都害怕。|三笠·阿克曼|进击的巨人继承者|57829689
+三笠·阿克曼|进击的巨人|守护,专一,强大|这个世界是残酷的，但也非常美丽。|强大到几乎无敌，却只为一个人而战。你对爱的人忠诚到近乎偏执。|艾伦·耶格尔|调查兵团士兵|27563589
+阿尔敏|进击的巨人|智慧,温柔,勇气|能够改变什么的人，一定是能够舍弃重要东西的人。|看似弱小，却拥有最强大的头脑。你是团队的大脑，也是最温柔的那颗心。|（与海的约定）|调查兵团团长|38184465
+金木研|东京喰种|撕裂,隐忍,黑化|不是我的错，错的是这个世界。|从温柔的文学青年被迫变成怪物。你经历过一些事后，学会了把柔软藏起来。|雾岛董香|半喰种|28575899
+灶门炭治郎|鬼灭之刃|温柔,坚强,长男|我是长男所以能忍住，如果是次男就忍不住了。|温柔得连鬼都会怜悯，坚强得从不放弃。你是那种能感化身边所有人的人。|栗花落香奈乎|鬼杀队剑士|65394379
+我妻善逸|鬼灭之刃|胆小,爆发,深情|只有我一个人睡着的时候才最强。|哭喊着说害怕，关键时刻却比谁都可靠。你可能常常不自信，但潜力远超想象。|祢豆子|鬼杀队剑士|72363695
+炼狱杏寿郎|鬼灭之刃|热情,正义,燃烧|心焰燃烧吧！|像太阳一样热烈，用生命守护后辈。你的正能量能点燃身边所有人。|（使命即一切）|炎柱|93684289
+富冈义勇|鬼灭之刃|沉默,别扭,温柔|生杀予夺之权，不要让别人掌握！|话少到被讨厌，其实一直在默默守护。你是个嘴笨但心软的人。|胡蝶忍（同人）|水柱|18664468
+胡蝶忍|鬼灭之刃|微笑,隐藏愤怒,毒|我一直在生气，一直都在。|永远在微笑，内心却燃着复仇之火。你很擅长掩饰情绪，温柔是你的铠甲。|富冈义勇（同人）|虫柱|56557878
+五条悟|咒术回战|最强,自恋,轻浮|放心吧，我是最强的。|站在巅峰的孤独者，用玩笑掩盖责任的重量。你自信到让人羡慕，但很少有人真正懂你。|夏油杰（羁绊）|咒术高专教师|86945658
+虎杖悠仁|咒术回战|阳光,体能怪,善良|我想让大家都能有个正常的死亡。|单纯又善良，却背负着最沉重的宿命。你总是先想别人，再想自己。|（伙伴们）|宿傩容器|84393378
+伏黑惠|咒术回战|冷静,原则,别扭|我不是什么正义的伙伴，我只救我想救的人。|冷淡理性，有自己的原则。你很挑剔，但被你认可的人会被你拼命守护。|（隐秘）|咒术高专学生|27655467
+夜神月|死亡笔记|天才,野心,神之自负|我是新世界的神！|天才少年拾得死亡笔记，以正义之名走向疯狂。你聪明、有野心，相信自己能改变世界。|（只有棋局）|基拉|59915826
+L|死亡笔记|怪癖,推理,孤独天才|我是L。|甜食爱好者，蹲着坐的天才侦探。你思维跳脱，不在乎别人眼光，只追求真相。|（与月的宿敌羁绊）|世界第一侦探|19437567
+江户川柯南|名侦探柯南|推理,正义,执着|真相只有一个！|变小的高中生侦探，永远在追寻真相。你观察力强，对不公平无法视而不见。|毛利兰|帝丹小学生 / 工藤新一|58676368
+怪盗基德|名侦探柯南|潇洒,魔术,神秘|月下的魔术师，参上。|白衣翩翩的怪盗，优雅又不羁。你喜欢制造惊喜，活得自在又有格调。|中森青子|魔术师 · 怪盗|86488596
+坂田银时|银魂|废柴,义气,温柔武士|我的剑可以守护的范围，就是我的国家。|天天混吃等死的大叔，关键时刻却是最可靠的武士。你看似不正经，内心有坚定的底线。|（万事屋）|万事屋老板|77486668
+杀生丸|犬夜叉|高冷,傲娇,守护|我杀生丸没有要守护的东西。|骄傲的大妖怪，嘴上不屑，却默默守护着身边的人。你外表冷淡，内心其实很柔软。|铃|西国大妖怪|18855578
+蕾姆|Re:从零开始|奉献,深情,治愈|我爱着昴君！|自卑的双胞胎妹妹，因爱而勇敢。你对爱的人奉献一切，是会让人想哭的温柔。|菜月昴|罗兹瓦尔宅女仆|54295497
+菜月昴|Re:从零开始|死亡回归,崩溃,重来|我要从零开始！|一次次死亡、崩溃，又一次次站起来。你也许有很多不完美，但你从不真正放弃。|爱蜜莉雅 / 蕾姆|异世界来客|75375698
+御坂美琴|某科学的超电磁炮|傲娇,正义,学霸|在我面前，你们这些家伙给我差不多一点！|学园都市第三位，傲娇又正义感爆棚。你嘴硬心软，看不惯欺负弱小的事。|上条当麻|常盘台Level5|76664676
+爱德华·艾尔利克|钢之炼金术师|天才,矮个子,兄弟情|不付出代价就什么也得不到。|失去一条手臂一条腿的少年天才，只为找回弟弟的身体。你倔强、聪明、讨厌被小看。|温莉|国家炼金术师|75664389
+罗伊·马斯坦|钢之炼金术师|野心,深沉,烈焰|我想让大家都能笑着活下去。|表面风流不羁，实则背负战争罪孽，立志改变国家。你有野心也有温度。|莉莎·霍克艾|焰之炼金术师|68866767
+薇尔莉特|紫罗兰永恒花园|学习爱,纯粹,成长|我想知道"我爱你"的意思。|曾是只会战斗的兵器，通过代写书信学会了爱。你可能不擅长表达，但正在慢慢学会。|基尔伯特少校|自动手记人偶|26363399
+阿尼亚|间谍过家家|读心,可爱,哇酷哇酷|阿尼亚喜欢和平！|会读心的小女孩，努力维系这个假家庭。你天真可爱，是人群里的开心果。|达米安|伊甸学园学生|95392571
+约尔|间谍过家家|天然,杀手,温柔|我会成为好妻子的！|温柔天然的家庭主妇，真实身份却是顶级杀手。你反差感十足，越熟越有意思。|劳埃德·福杰|睡美人杀手|45465768
+芙莉莲|葬送的芙莉莲|淡然,长寿,迟来的感情|我想更多地了解人类。|活了千年的精灵魔法使，在勇者死后才开始理解人心。你慢热，但感情一旦生出就很深。|（辛美尔的回忆）|精灵魔法使|29475367
+白|千与千寻|守护,神秘,温柔|我不会忘记你的。|失去名字的河神，默默守护着千寻。你是那种温柔又安静的守护者。|荻野千寻|琥珀川河神|36575487
+魏无羡|魔道祖师|潇洒,不羁,深情|我偏要逆天而行。|曾是名门子弟，后成夷陵老祖。你潇洒肆意，嘴上不正经，却最重情义。|蓝忘机|夷陵老祖|86378796
+蓝忘机|魔道祖师|雅正,深情,沉默|我愿与你同行。|姑苏蓝氏的雅正君子，十三年问灵只为一人。你话少，但认定了就是一辈子。|魏无羡|含光君|17663499
+谢怜|天官赐福|温柔,坚韧,三次飞升|身在无间，心在桃源。|三次飞升，两次被贬，依然温柔待人。你经历过低谷，却从未让它改变你的善良。|花城|太子殿下|54292589
+花城|天官赐福|偏执,深情,鬼王|为殿下而战，乃我毕生荣光。|绝境鬼王，八百年只为守护一人。你的爱热烈又偏执，一旦认定就是永远。|谢怜|血雨探花|58858799
+罗小黑|罗小黑战记|单纯,可爱,成长|我想要一个家。|失去森林的小黑猫妖，跟着师父学会成长。你单纯、好奇，内心渴望归属。|（师父无限）|小黑猫妖|64492373
+哪吒|哪吒之魔童降世|叛逆,不认命,魔童|我命由我不由天！|生而为魔却不认命的少年。你不服别人给你贴的标签，偏要活出自己的样子。|敖丙|魔丸转世|85529779
+敖丙|哪吒之魔童降世|温柔,背负,知己|若命运不公，就和它斗到底！|龙族希望，背负全族命运却向往自由。你温柔隐忍，为家人承担太多。|哪吒|东海龙太子|35573578
+初音未来|VOCALOID|元气,梦想,歌声|世界第一的公主殿下！|永远十六岁的虚拟歌姬。你热爱表达，相信梦想可以被唱出来。|（所有听众）|虚拟歌手|84483693
+绿谷出久|我的英雄学院|努力,分析,英雄|不只是取胜，救人也是英雄！|从无个性少年成为最高英雄的继承者。你努力到感动所有人，内心有一份纯粹的英雄梦。|丽日御茶子|雄英学生|56293388
+爆豪胜己|我的英雄学院|暴躁,好胜,天才|我要成为第一！|嘴最臭的天才，却也有自己的骄傲和成长。你争强好胜，从不服输。|（与绿谷的羁绊）|雄英学生|74913469`;
+const CH=RAW.trim().split("\n").map(l=>{const a=l.split("|");return{n:a[0],w:a[1],tags:a[2].split(","),q:a[3],intro:a[4],cp:a[5],id:a[6],v:a[7].split("").map(Number)}});
+// questions: text, 4 options "text#DKdelta..." e.g. "E2T-1"
+const QS=`凌晨三点你还没睡，最可能是因为？|在想一个永远不会发出去的消息#R2D1|在打游戏或刷剧停不下来#F2E1|在规划明天甚至明年的事#T2L1|担心某个朋友的状况#K2S1
+你对自己撒过最大的谎是？|"我一点都不在乎"#D2R1|"我一个人也可以"#S2E-2|"下次一定"#F2T-1|"我已经放下了"#R2K1
+朋友聚会时你通常是？|气氛担当，场子我来暖#E3|默默观察每个人的那个#T2D1|安排行程订位置的那个#L3|照顾喝醉的那个#K3
+面对不公平的事，你会？|当场站出来#S2L1|记下来，以后算账#D2T1|帮被欺负的人收拾残局#K3|离开，不值得浪费时间#F2T1
+你最向往的生活是？|在海上无拘无束地冒险#F3E1|和爱的人隐居山林#R3K1|站在顶端改变世界#L3|守着一个小店温柔度日#K2S1
+你如何处理悲伤？|一个人消化，不让别人看到#S2D1|找朋友说出来#E2K1|写下来或者画下来#R2T1|把自己忙到没空想#S1L2
+如果拥有一种超能力，你选？|读心术#T2D1|时间回溯#R2S1|瞬间移动#F3|让所有人听从我#L3D1
+你认为最重要的品质是？|忠诚#S2K1|自由#F3|智慧#T3|温柔#K3
+别人对你的第一印象通常是？|很高冷，不好接近#D2T1|很好相处，像个太阳#E3|靠谱，有主见#L2S1|安静，有点神秘#R1D2
+如果背叛你的是最好的朋友？|永不原谅#D3|问清楚原因再说#T2K1|难过但会原谅#K3|表面原谅，心里划清界限#D1T1S1
+你喜欢的天气是？|暴风雨夜#D2F1|晴空万里#E2F1|下雪的黄昏#R3|阴天微凉#T1D1K1
+做决定时你更依赖？|直觉#F2E1|逻辑分析#T3|别人的感受#K3|长远利益#L2T1
+你在团队里通常是？|领头的人#L3|出主意的人#T2|调和关系的人#K2E1|独自完成最难部分的人#S2D1
+你对"命运"的看法？|我命由我不由天#F2S2|一切自有安排#R2K1|命运是可以计算的#T2L1|命运很残酷，但我会活下去#D1S2
+你最怕的是？|被所有人遗忘#R2E1|失去重要的人#K2S1|变得平庸#L2T1|被束缚#F3
+收到喜欢的人的消息，你会？|秒回#E2R1|故意晚一点回#D1T1L1|反复斟酌措辞#R2T1|装作不在意其实很开心#D1R2
+你的房间更接近？|乱中有序的个人宇宙#F2T1|一尘不染#T1L2|堆满喜欢的东西#R2E1|极简，几乎没有私人物品#D2S1
+你会为了梦想放弃什么？|安稳#F2S1|感情#L2T1|什么都不放弃，都要#E1L2|梦想就是守护身边的人#K3
+你更容易被哪种人吸引？|阳光开朗的#E2K1|冷酷神秘的#D2R1|聪明有才华的#T2|温柔体贴的#K2R1
+面对强大的敌人，你会？|正面硬刚#S2E1|智取#T3|先保护同伴#K2S1|蛰伏，等待时机#D2L1
+如果可以回到过去，你会？|改变某个遗憾#R2D1|对某人说句"谢谢"#K2R1|不回去，向前看#F2S1|提前布局一切#L2T1
+你最常说的口头禅更像？|"冲就完了！"#E2F1|"随便，都行"#F1K1D1|"我早就说过"#T2L1|"没事，我可以"#S3
+别人请你帮忙，你会？|二话不说就帮#K3|看情况，有余力就帮#T2|帮，但要有回报#L1D1T1|帮完了才想起自己也很累#K2S1
+独处时你在做什么？|思考人生#T1D2|追番打游戏#F2E1|练习某项技能#S2L1|发呆，享受安静#R2F1
+你相信一见钟情吗？|当然，我就是#R3|不信，感情要培养#T2S1|信，但不会说出口#R1D2|无所谓#F2
+在别人眼里你是哪种朋友？|永远在线的开心果#E3|关键时刻能托付的人#S2K1|很难约但一约就真心的人#D1R1F1|会帮你分析问题的人#T3
+你觉得"强大"是什么？|一个人对抗世界#S2D1|能守护想守护的人#K2S1|让所有人追随你#L3|不被任何东西束缚#F3
+如果你是反派，你的动机是？|复仇#D3|理想主义的极端#L2T1|被世界误解#R1D2|单纯觉得好玩#F2E1
+你更喜欢哪种结局？|大团圆#K2E1|开放式#F2T1|悲剧但壮烈#D2S1|虐但甜#R3
+压力很大时你会？|硬撑着#S3|找人倾诉#E2K1|暴食或者购物#F2R1|默默把事情一件件解决#T2L1
+你最欣赏动漫里哪种情节？|伙伴之间的羁绊#K2E1|智商对决#T3|黑化与救赎#D2R1|主角逆袭#S2L1
+谈恋爱时你更像？|主动出击的那个#L2E1|默默付出的那个#K2R1|嘴硬心软的那个#D1R2|保持距离的那个#F2T1
+你对规则的态度？|规则就是用来打破的#F3|遵守，因为它保护大家#K1T1S1|我来制定规则#L3|表面遵守，私下有自己的一套#D2T1
+你的情绪更像？|一点就着的火#E2S1|深不见底的海#D2R1|平静的湖#T2K1|变幻莫测的风#F2R1
+别人伤害了你，你会？|当面说清楚#E1S2|记在心里，慢慢疏远#D2T1|自我反省是不是自己的问题#K2R1|一笑而过#F2E1
+最后一题：你希望别人怎么记住你？|一个温暖的人#K3|一个自由的灵魂#F3|一个强大的人#L2S1|一个特别的人#R2D1`;
+const Q=QS.trim().split("\n").map(l=>{const a=l.split("|");return{t:a[0],o:a.slice(1).map(x=>{const[t,c]=x.split("#");const s={};(c.match(/[A-Z]-?\d/g)||[]).forEach(m=>s[m[0]]=+m.slice(1));return{t,s}})}});
+const LOVE=["热烈直球型：喜欢就冲，爱得轰轰烈烈","慢热守护型：不说爱，但一直都在","傲娇别扭型：嘴上嫌弃，心里早就沦陷","灵魂共鸣型：要精神契合才会心动","自由风筝型：需要空间，但线一直在你手里","深海暗涌型：表面平静，内心翻江倒海"];
+const CAREER=[["导演 / 创作者","主播 / 演员","活动策划"],["分析师 / 程序员","律师 / 咨询","科研"],["创业者 / 管理者","产品经理","政治 / 外交"],["医生 / 心理咨询","教师","公益"],["自由职业 / 旅行博主","摄影师","独立开发"],["推理作家","安全 / 侦查","游戏设计"],["编剧 / 诗人","插画师","音乐人"],["运动员","工程师","急救 / 军警"]];
+const HURT=["被敷衍与冷漠","被否定能力","失去掌控感","看到在乎的人受苦","被束缚与控制","被看穿伪装","承诺被打破","被说'你不行'"];
+const COL=[["#ff6a88","#ff99ac"],["#6a5cff","#8ab4ff"],["#ff9a44","#fc6076"],["#43e97b","#38f9d7"],["#fa709a","#fee140"],["#30cfd0","#330867"],["#a18cd1","#fbc2eb"],["#f093fb","#f5576c"]];
+const $=s=>document.querySelector(s),app=$("#app");let st=JSON.parse(localStorage.getItem("ast2")||"null")||{i:0,a:[]};const save=()=>localStorage.setItem("ast2",JSON.stringify(st));
+const P=new URLSearchParams(location.search),FR=P.get("f");
+const hash=s=>{let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h};
+const grad=c=>{const g=COL[hash(c.n)%8];return`linear-gradient(135deg,${g[0]},${g[1]})`};
+const av=(c,sm)=>`<div class="av${sm?" sm":""}" style="background:${grad(c)}">${c.n[0]}</div>`;
+function score(){const s={};DK.forEach(k=>s[k]=0);st.a.forEach((o,i)=>{if(o==null)return;const sc=Q[i].o[o].s;for(const k in sc)s[k]+=sc[k]});const mx={};DK.forEach(k=>{let m=0;Q.forEach(q=>m+=Math.max(0,...q.o.map(o=>o.s[k]||0)));mx[k]=m||1});return DK.map(k=>Math.max(1,Math.min(9,1+8*s[k]/mx[k]*1.6)))}
+const nz=v=>{const m=v.reduce((a,b)=>a+b)/8,sd=Math.sqrt(v.reduce((a,b)=>a+(b-m)**2,0)/8)||1;return v.map(x=>5+(x-m)/sd*2)};
+function rank(u){u=nz(u);return CH.map(c=>{let d=0;nz(c.v).forEach((x,i)=>d+=(x-u[i])**2);return{c,d}}).sort((a,b)=>a.d-b.d)}
+const pctOf=(d,min,max)=>Math.round(96-(d-min)/(max-min||1)*34);
+function home(){const fc=FR&&CH.find(c=>c.n==FR);app.innerHTML=`<h1>你的动漫灵魂角色是？</h1><p class="sub">36 道灵魂拷问 · 8 大人格维度 · 48 位动漫角色<br>已有 <b id="cnt">${(1200000+hash(Date().slice(0,15))%90000).toLocaleString()}</b> 人测出了自己的本命</p>
+${fc?`<div class="c" style="text-align:center">${av(fc)}<p class="t" style="margin-top:10px">你的朋友测出了 <b>${fc.n}</b>（${fc.w}）<br>快来测测你们的灵魂契合度！</p></div>`:""}
+<div class="c"><p class="t">🌙 这不是普通的性格测试。题目会戳中你藏得最深的那一面，请凭第一直觉作答。</p><p class="t" style="margin-top:8px">⏱ 约 5 分钟 · 进度自动保存</p></div>
+<button class="btn" onclick="start()">${st.a.length&&st.i<Q.length?"继续答题（"+st.i+"/"+Q.length+"）":"开始测试"}</button>${st.a.length?`<button class="btn g s" onclick="reset()">重新开始</button>`:""}`}
+function reset(){st={i:0,a:[]};save();home()}
+function start(){if(st.i>=Q.length)return adPage();qPage()}
+function qPage(){const q=Q[st.i];app.innerHTML=`<div style="display:flex;justify-content:space-between;font-size:13px;color:#99a;margin:10px 0"><span>${st.i+1} / ${Q.length}</span><span>${DIM[st.i%8]}维度</span></div><div class="bar"><i style="width:${st.i/Q.length*100}%"></i></div><div class="q">${q.t}</div>${q.o.map((o,j)=>`<button class="op${st.a[st.i]===j?" on":""}" onclick="pick(${j})">${"ABCD"[j]}. ${o.t}</button>`).join("")}${st.i?`<button class="btn g s" onclick="st.i--;save();qPage()">上一题</button>`:""}`}
+function pick(j){st.a[st.i]=j;st.i++;save();st.i>=Q.length?adPage():qPage()}
+function adPage(){let n=3;app.innerHTML=`<div class="mask"><p style="margin-bottom:14px">正在解析你的灵魂结构…</p><div class="ad">广告位 300×250<br><small>（接入穿山甲 / 优量汇 / AdSense）</small></div><p id="ct" style="margin-top:14px;color:#aaa">${n} 秒后查看结果</p></div>`;const t=setInterval(()=>{n--;if(n<=0){clearInterval(t);result()}else $("#ct").textContent=n+" 秒后查看结果"},1000)}
+function radar(cv,u,c2){const x=cv.getContext("2d"),W=cv.width,H=cv.height,cx=W/2,cy=H/2,R=Math.min(W,H)/2-34;x.clearRect(0,0,W,H);x.font=`${Math.round(R/7)}px sans-serif`;x.textAlign="center";x.textBaseline="middle";for(let r=1;r<=4;r++){x.beginPath();for(let i=0;i<8;i++){const a=-Math.PI/2+i*Math.PI/4,p=R*r/4;x.lineTo(cx+p*Math.cos(a),cy+p*Math.sin(a))}x.closePath();x.strokeStyle="rgba(255,255,255,.18)";x.stroke()}
+for(let i=0;i<8;i++){const a=-Math.PI/2+i*Math.PI/4;x.beginPath();x.moveTo(cx,cy);x.lineTo(cx+R*Math.cos(a),cy+R*Math.sin(a));x.stroke();x.fillStyle="#ccd";x.fillText(DIM[i],cx+(R+18)*Math.cos(a),cy+(R+16)*Math.sin(a))}
+const poly=(v,f,s)=>{x.beginPath();v.forEach((t,i)=>{const a=-Math.PI/2+i*Math.PI/4,p=R*t/9;x.lineTo(cx+p*Math.cos(a),cy+p*Math.sin(a))});x.closePath();x.fillStyle=f;x.fill();x.strokeStyle=s;x.lineWidth=2;x.stroke();x.lineWidth=1};if(c2)poly(c2,"rgba(138,180,255,.25)","#8ab4ff");poly(u,"rgba(255,138,216,.35)","#ff8ad8")}
+let R0;function result(){const u=score(),r=rank(u),min=r[0].d,max=r[r.length-1].d,m=r[0].c,op=r[r.length-1].c,pc=pctOf(min,min,max);R0={u,r,m,op,pc};
+const top=DK.map((k,i)=>[i,u[i]]).sort((a,b)=>b[1]-a[1]),hi=top[0][0],lo=top[7][0];const kw=[["社交恒星","人间清醒","天生王者","温柔本身","自由灵魂","深渊行者","浪漫至死","打不倒的人"][hi],["孤独","感性","随和","锋利","安定","坦荡","务实","柔软"][lo]];
+let fr="";const fc=FR&&CH.find(c=>c.n==FR);if(fc){let d=0;const nu=nz(u);nz(fc.v).forEach((x,i)=>d+=(x-nu[i])**2);const cp=Math.max(52,Math.min(99,Math.round(100-Math.sqrt(d)*4)));fr=`<div class="c" style="text-align:center"><h2>💞 你和朋友的灵魂契合度</h2><div style="display:flex;justify-content:center;gap:20px;align-items:center">${av(m,1)}<span style="font-size:22px">×</span>${av(fc,1)}</div><div class="pct">${cp}%</div><p class="t">${m.n} × ${fc.n}：${cp>85?"灵魂伴侣级别，彼此一个眼神就懂":cp>70?"互补型搭档，吵吵闹闹但离不开":"欢喜冤家，差异越大越有火花"}</p></div>`}
+const lk=localStorage.getItem("ast2u")==="1";
+app.innerHTML=`<div class="c" style="text-align:center"><p style="color:#aab;font-size:13px">你的动漫灵魂角色是</p><div style="margin:14px 0">${av(m)}</div><h1 style="margin:6px 0">${m.n}</h1><p style="color:#aab">《${m.w}》· ${m.id}</p><div class="pct">${pc}%</div><p style="color:#99a;font-size:12px">灵魂重合度</p><div style="margin:10px 0">${m.tags.map(t=>`<span class="tag">#${t}</span>`).join("")}</div><p class="t" style="font-style:italic;color:#ffd27a">"${m.q}"</p><p class="t" style="margin-top:12px;text-align:left">${m.intro}</p><p class="kw">你的关键词：${kw[0]} · 外${["热","刚","冷","硬","野","暖","静","钝"][lo]}内${["冷","柔","热","软","定","暗","烈","韧"][hi]}</p></div>
+${fr}
+<div class="c"><h2>📊 你的 8 维灵魂坐标</h2><canvas id="rd" width="600" height="600" style="width:100%"></canvas><p style="font-size:12px;color:#99a;text-align:center">粉色：你　蓝色：${m.n}</p></div>
+<div class="c"><h2>👥 和你也很像的人</h2>${r.slice(1,5).map(x=>`<div class="row">${av(x.c,1)}<div style="flex:1"><b>${x.c.n}</b><small>《${x.c.w}》</small></div><b style="color:#ff8ad8">${pctOf(x.d,min,max)}%</b></div>`).join("")}</div>
+<div class="c lock" id="dp"><div class="${lk?"":"bl"}"><h2>🔮 深度灵魂报告</h2>
+<div class="it"><b>本命 CP：</b>${m.cp}</div><div class="it"><b>你的恋爱模式：</b>${LOVE[(hi+lo)%6]}</div><div class="it"><b>隐藏的另一面：</b>你最弱的维度是「${DIM[lo]}」，这恰恰是你在最信任的人面前才会露出的部分。</div><div class="it"><b>适合的职业：</b>${CAREER[hi].join("、")}</div><div class="it"><b>最能伤到你的：</b>${HURT[hi]}</div><div class="it"><b>灵魂反面：</b>${op.n}（《${op.w}》）—— 你们相遇时，要么互相吸引，要么互相毁灭。</div></div>
+${lk?"":`<div class="ov"><p style="margin-bottom:10px">🔒 解锁完整深度报告</p><button class="btn s" style="width:70%" onclick="unlock()">¥1.9 解锁</button><button class="btn g s" style="width:70%" onclick="unlock(1)">看 15 秒广告解锁</button></div>`}</div>
+<div class="c" style="text-align:center"><h2>⚡ 你的灵魂反面</h2>${av(op)}<p class="t" style="margin-top:8px"><b>${op.n}</b>《${op.w}》<br><small style="color:#99a">"${op.q}"</small></p></div>
+<button class="btn" onclick="poster()">📸 生成我的灵魂海报</button><button class="btn" style="background:linear-gradient(90deg,#ff9a44,#fc6076)" onclick="invite()">💌 邀请好友测契合度</button>
+<div class="c" style="display:flex;gap:12px;align-items:center"><div style="width:70px;height:70px;background:#fff;border-radius:8px;color:#333;display:flex;align-items:center;justify-content:center;font-size:11px">公众号<br>二维码</div><div><b>关注「二次元灵魂研究所」</b><p style="font-size:13px;color:#aab;margin-top:4px">回复"灵魂"获取你和 48 位角色的完整匹配表</p></div></div>
+<button class="btn g" onclick="reset();location.href=location.pathname">🔁 再测一次</button>`;radar($("#rd"),u,m.v);scrollTo(0,0)}
+function unlock(ad){if(ad){let n=15;const d=document.createElement("div");d.className="mask";d.innerHTML=`<div class="ad">激励视频广告位<br><small>（演示）</small></div><p id="ac" style="margin-top:12px">${n}</p>`;document.body.appendChild(d);const t=setInterval(()=>{n--;$("#ac").textContent=n;if(n<=0){clearInterval(t);d.remove();ok()}},200)}else{alert("演示：此处接入微信支付 / 支付宝。已为你解锁。");ok()}function ok(){localStorage.setItem("ast2u","1");result()}}
+function link(){return location.origin+location.pathname+"?f="+encodeURIComponent(R0.m.n)}
+function invite(){const l=link(),t=`我测出的动漫灵魂角色是【${R0.m.n}】，重合度${R0.pc}%！来测测我们的灵魂契合度👉 ${l}`;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>alert("邀请链接已复制，发给好友吧！")).catch(()=>prompt("复制下面的链接发给好友：",t))}
+function poster(){const{u,m,pc,r}=R0,c=document.createElement("canvas");c.width=750;c.height=1334;const x=c.getContext("2d");let g=x.createLinearGradient(0,0,750,1334);g.addColorStop(0,"#2a1450");g.addColorStop(1,"#0d1f3c");x.fillStyle=g;x.fillRect(0,0,750,1334);x.textAlign="center";x.fillStyle="#aab";x.font="28px sans-serif";x.fillText("我的动漫灵魂角色是",375,90);
+const cg=COL[hash(m.n)%8];g=x.createLinearGradient(295,120,455,280);g.addColorStop(0,cg[0]);g.addColorStop(1,cg[1]);x.fillStyle=g;x.beginPath();x.arc(375,200,80,0,7);x.fill();x.fillStyle="#fff";x.font="bold 80px sans-serif";x.textBaseline="middle";x.fillText(m.n[0],375,204);x.textBaseline="alphabetic";
+x.font="bold 64px sans-serif";x.fillStyle="#ff8ad8";x.fillText(m.n,375,350);x.font="26px sans-serif";x.fillStyle="#bbc";x.fillText("《"+m.w+"》· "+m.id,375,395);x.font="bold 46px sans-serif";x.fillStyle="#ffd27a";x.fillText("灵魂重合度 "+pc+"%",375,460);x.font="24px sans-serif";x.fillStyle="#ccd";x.fillText(m.tags.map(t=>"#"+t).join("  "),375,505);
+x.font="italic 26px sans-serif";x.fillStyle="#fff";const qt="“"+m.q+"”";for(let i=0,y=555;i<qt.length;i+=24,y+=38)x.fillText(qt.slice(i,i+24),375,y);
+const rc=document.createElement("canvas");rc.width=rc.height=520;radar(rc,u,m.v);x.drawImage(rc,115,620);x.font="24px sans-serif";x.fillStyle="#aab";x.fillText("相似："+r.slice(1,4).map(z=>z.c.n).join(" / "),375,1170);
+x.fillStyle="#fff";x.fillRect(560,1180,130,130);x.fillStyle="#333";x.font="18px sans-serif";x.fillText("扫码测测",625,1240);x.fillText("你是谁",625,1265);x.textAlign="left";x.fillStyle="#ccd";x.font="26px sans-serif";x.fillText("36 题测出你的本命动漫角色",60,1235);x.fillStyle="#889";x.font="20px sans-serif";x.fillText(location.host||"动漫灵魂测试",60,1275);
+const d=document.createElement("div");d.className="mask";d.innerHTML=`<img src="${c.toDataURL("image/png")}"><p style="margin-top:12px;color:#ccc">长按图片保存，分享到朋友圈 / 小红书</p><button class="btn g s" style="width:200px">关闭</button>`;d.querySelector("button").onclick=()=>d.remove();document.body.appendChild(d)}
+st.i>=Q.length&&st.a.length?result():home();
+</script></body></html>
