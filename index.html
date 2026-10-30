@@ -16,7 +16,8 @@ h1{font-size:28px;text-align:center;background:linear-gradient(90deg,#ff8ad8,#8a
 .ad{width:300px;height:250px;border:2px dashed #666;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#888;font-size:14px;flex-direction:column}
 p.t{line-height:1.8;font-size:15px;color:#ddd}.kw{font-size:15px;color:#ffd27a;text-align:center;margin:8px 0}.it{margin:10px 0}.it b{color:#ff8ad8}
 </style></head><body><div class="w" id="app"></div>
-<script>
+<script>window.QRI=new Image();QRI.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAEYAQAAAACv9dQhAAAB4ElEQVR4nO2Z0WorQQxDpZD//+XTB9mz29JLnzrx7SQ0sN0RRBiPLNtGP34eP0P+LOYp5wEZCyNJxmidTOO8Nz5KRGSELVkrpepkGufdGLsyRYhEyMmenEzkvAvzvB4tRCfPXZamcX4NBpIykpWb9lo+MzBP3XPFopUZr5NpnDfHpzLFCFf9SnT6ZBrnnRhze/L3Zmga583+pxxPpAe3FZKELDGO8/b7hYU7PG0MUXRoHue9GMAsV4hy05I7eTmP81ZMeebkipEQtKmWz/bP6b9id3D75oTL7/qu8sxJmPLPUH/17zTOm+OjRKSfWBGq10fH55EgGJH+KzKUb1W0eZx3Yrq8C0qoqw2TZNjOZxbmulCfenZUQiTO1p+HnHa9tTmqYyR4918SVFyqgHUdUyXV4fp8VXR9LV716uz71fPDaE9NxkqwJWGO708lqVw03ZJmFE3G9tM4vwJDzcQMeLVjmSNO5bwD07J8NRXAalB1fH9xmx+qZxrOhIzsCX10fJYppFvUzqarW53GebM+16gng8SaIErKOOj0+eFTq2TdFvHItQHDZ+vPJwydRbrq/Cv5jMP0etlmbZqnc/5dzH1/yprKG1eB91t/en8q4bUl7AXY6f75HyvTX/mt/xHzAaiUG8ykRdUjAAAAAElFTkSuQmCC";
+
 const DIM=["外向","理性","掌控","温柔","自由","阴影","浪漫","坚韧"];
 const DK=["E","T","L","K","F","D","R","S"];
 // name|work|tags|quote|intro|cp|identity|vector(8 digits 1-9)
@@ -155,7 +156,7 @@ const cg=COL[hash(m.n)%8];g=x.createLinearGradient(295,120,455,280);g.addColorSt
 x.font="bold 64px sans-serif";x.fillStyle="#ff8ad8";x.fillText(m.n,375,350);x.font="26px sans-serif";x.fillStyle="#bbc";x.fillText("《"+m.w+"》· "+m.id,375,395);x.font="bold 46px sans-serif";x.fillStyle="#ffd27a";x.fillText("灵魂重合度 "+pc+"%",375,460);x.font="24px sans-serif";x.fillStyle="#ccd";x.fillText(m.tags.map(t=>"#"+t).join("  "),375,505);
 x.font="italic 26px sans-serif";x.fillStyle="#fff";const qt="“"+m.q+"”";for(let i=0,y=555;i<qt.length;i+=24,y+=38)x.fillText(qt.slice(i,i+24),375,y);
 const rc=document.createElement("canvas");rc.width=rc.height=520;radar(rc,u,m.v);x.drawImage(rc,115,620);x.font="24px sans-serif";x.fillStyle="#aab";x.fillText("相似："+r.slice(1,4).map(z=>z.c.n).join(" / "),375,1170);
-x.fillStyle="#fff";x.fillRect(560,1180,130,130);x.fillStyle="#333";x.font="18px sans-serif";x.fillText("扫码测测",625,1240);x.fillText("你是谁",625,1265);x.textAlign="left";x.fillStyle="#ccd";x.font="26px sans-serif";x.fillText("36 题测出你的本命动漫角色",60,1235);x.fillStyle="#889";x.font="20px sans-serif";x.fillText(location.host||"动漫灵魂测试",60,1275);
+x.fillStyle="#fff";x.fillRect(560,1180,130,130);if(window.QRI&&QRI.complete)x.drawImage(QRI,565,1185,120,120);x.textAlign="left";x.fillStyle="#ccd";x.font="26px sans-serif";x.fillText("36 题测出你的本命动漫角色",60,1235);x.fillStyle="#889";x.font="20px sans-serif";x.fillText(location.host||"动漫灵魂测试",60,1275);
 const d=document.createElement("div");d.className="mask";d.innerHTML=`<img src="${c.toDataURL("image/png")}"><p style="margin-top:12px;color:#ccc">长按图片保存，分享到朋友圈 / 小红书</p><button class="btn g s" style="width:200px">关闭</button>`;d.querySelector("button").onclick=()=>d.remove();document.body.appendChild(d)}
 st.i>=Q.length&&st.a.length?result():home();
 </script></body></html>
